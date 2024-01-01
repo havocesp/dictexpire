@@ -158,8 +158,7 @@ class DictExpire:
         :return:
         """
         self._drop_expired()
-        value = self.data.get(key or '', default) or default
-        if value:
+        if value := self.data.get(key or '', default) or default:
             del self.data[key]
             return value
         else:
@@ -275,8 +274,7 @@ class DictExpire:
         :param kwargs: accepted keys -> "default", "default_expire_secs"
         :return:
         """
-        default = kwargs.get('default')
-        if default:
+        if default := kwargs.get('default'):
             del kwargs['default']
             kwargs.update(dict.fromkeys(seq, default))
         else:
